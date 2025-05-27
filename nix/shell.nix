@@ -1,6 +1,7 @@
 {pkgs}: let
   inherit (pkgs) lib;
   python = pkgs.python312;
+  commonDeps = with pkgs; [uv just];
   shellHook = ''
     unset PYTHONPATH
     export REPO_ROOT=$(git rev-parse --show-toplevel)
@@ -11,19 +12,21 @@
     pkgs.mkShell {
       inherit (env) name;
       inherit shellHook;
-      packages = [
-        env
-        pkgs.uv
-      ];
+      packages =
+        [
+          env
+        ]
+        ++ commonDeps;
     };
 
   mkImpureShell = pythonVersion:
     pkgs.mkShell {
       name = "impure";
-      packages = [
-        pythonVersion
-        pkgs.uv
-      ];
+      packages =
+        [
+          pythonVersion
+        ]
+        ++ commonDeps;
       env =
         {
           UV_PYTHON_DOWNLOADS = "never";

@@ -1,12 +1,10 @@
 {pkgs}: final: prev: let
-  inherit (pkgs) lib stdenv;
+  inherit (pkgs) lib;
   inherit (final) resolveBuildSystem;
-
   addBuildSystems = pkg: spec:
     pkg.overrideAttrs (old: {
       nativeBuildInputs = old.nativeBuildInputs ++ resolveBuildSystem spec;
     });
-
   # Define common build system overrides for packages
   # These are necessary because uv.lock doesn't contain build-system metadata
   buildSystemOverrides = {

@@ -1,5 +1,5 @@
 .DS_Store
-.envrc.cache
-.direnv
-*.egg-info
+.direnv/*
 .venv/*
+*.egg-info/
+.ipycheck_points/
