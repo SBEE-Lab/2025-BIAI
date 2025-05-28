@@ -13,6 +13,9 @@
       # add custom backend dependencies here
       setuptools = [];
     };
+    hdbscan = {
+      setuptools = [];
+    };
   };
 in
   lib.mapAttrs (name: spec: addBuildSystems prev.${name} spec) buildSystemOverrides
