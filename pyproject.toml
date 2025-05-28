@@ -4,24 +4,23 @@ version = "0.0.1"
 description = "project description"
 readme = "README.md"
 requires-python = ">=3.12"
-
 authors = [{ name = "mulatta" }]
-
 maintainers = [
   { name = "Seungwon Lee", email = "67085791+mulatta@users.noreply.github.com" },
 ]
-
 dependencies = [
-    "biopython>=1.85",
-    "esm>=3.2.0",
-    "hdbscan>=0.8.40",
-    "jupyter>=1.1.1",
-    "matplotlib>=3.10.3",
-    "numpy>=2.2.6",
-    "plotly>=6.1.1",
-    "scikit-learn>=1.6.1",
-    "scipy>=1.15.3",
-    "textdistance>=4.6.3",
+  "biopython>=1.85",
+  "esm>=3.2.0",
+  "hdbscan>=0.8.40",
+  "jupyter>=1.1.1",
+  "matplotlib>=3.10.3",
+  "numpy>=2.2.6",
+  "scikit-learn>=1.6.1",
+  "scipy>=1.15.3",
+  "textdistance>=4.6.3",
+  "umap-learn>=0.5.7",
+  "torch>=2.0.0",
+  "torchvision>=0.15.0",
 ]
 
 [project.urls]
@@ -31,8 +30,16 @@ Repository = "https://github.com/mulatta"
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu" }]
+torchvision = [{ index = "pytorch-cpu" }]
 
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.setuptools]
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["src*"]

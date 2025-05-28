@@ -9,13 +9,9 @@
   # These are necessary because uv.lock doesn't contain build-system metadata
   buildSystemOverrides = {
     # Add custom build backend overrides
-    zstd = {
-      # add custom backend dependencies here
-      setuptools = [];
-    };
-    hdbscan = {
-      setuptools = [];
-    };
+    zstd.setuptools = [];
+    hdbscan.setuptools = [];
+    umap.setuptools = [];
   };
 in
   lib.mapAttrs (name: spec: addBuildSystems prev.${name} spec) buildSystemOverrides
